@@ -14,14 +14,6 @@ Este repositório contém minhas soluções do [LeetCode](https://leetcode.com/)
 
 > ✅ = Resolvido &nbsp;&nbsp;&nbsp;&nbsp;⬜ = Ainda não resolvido
 
-## 🧪 Compilação e Execução
-
-```bash
-cd LeetCode_<id>
-gcc main.c -o solution
-./solution
-```
-
 ## 🗂️ Estrutura
 
 ```
