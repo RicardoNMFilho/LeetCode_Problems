@@ -3,38 +3,50 @@
 // part of haystack.
 
 int strStr(char* haystack, char* needle) {
-    
-    int len_needle = strlen(needle);
-    int len_haystack = strlen(haystack);
-    int control;
-    int index;
+    int lenHaystack = strlen(haystack);
+    int lenNeedle = strlen(needle);
 
-    if (len_needle == len_haystack) {
-        if (strcmp(haystack, needle) == 0) {
-            return 0;
+    int lps[lenNeedle];
+    int len = 0;
+
+    int j = 0;
+
+    lps[0] = 0;
+
+    for (int i = 1; i < lenNeedle; i++){
+        if (needle[i] == needle[len]){
+            len++;
+            lps[i] = len;
         }
 
         else {
-            return -1;
+            if (len != 0){
+                len = lps[len - 1];
+                i = i - 1;
+            }
+            
+            else {
+                lps[i] = 0;
+            }
         }
     }
 
-    for (int i = 0; i <= len_haystack - len_needle; i++) {
-        control = 0;
-        index = i;
+    for (int i = 0; i < lenHaystack; i++) {
+        if (needle[j] == haystack[i]){
+            j++;
 
-        for (int j = 0; j < len_needle; j++) {
-            if (needle[j] != haystack[i + j]){
-                control = 1;
-                break;
+            if (j == lenNeedle) {
+                return (i - j) + 1;
             }
         }
 
-        if (control == 0){
-            return index;
+        else {
+            if (j != 0) {
+                j = lps[j - 1];
+                i = i - 1;
+            }
         }
     }
 
     return -1;
-
 }
